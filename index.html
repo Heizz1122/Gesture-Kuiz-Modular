@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gesture Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🧠 Gesture Quiz</h1>
+
+  <!-- Kamera pengguna -->
+  <video id="webcam" autoplay playsinline></video>
+
+  <!-- Emoji gesture yang dikesan -->
+  <div id="gesture-icon">✋</div>
+
+  <!-- Panduan gesture untuk user -->
+  <div id="gesture-guide">
+    <p>🖐️ = A | ✌️ = B | ☝️ = C | 🤟 = D</p>
+  </div>
+
+  <!-- Soalan dan pilihan jawapan -->
+  <div id="question-container">
+    <p id="question-text">Loading question...</p>
+    <ul id="options-list"></ul>
+  </div>
+
+  <!-- Feedback jawapan -->
+  <p id="feedback"></p>
+
+  <!-- MediaPipe Hands -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+  <!-- Modul app -->
+  <script src="modules/quiz-data.js"></script>
+  <script src="modules/quiz-engine.js"></script>
+  <script src="modules/gesture-handler.js"></script>
+  <script src="modules/gesture-feedback.js"></script>
+  <script src="modules/camera-setup.js"></script>
+
+  <!-- Entry point -->
+  <script src="script.js"></script>
+</body>
+</html>
