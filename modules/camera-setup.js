@@ -37,11 +37,5 @@ function startCamera() {
     alert("❌ Tak dapat akses kamera.");
     console.error("Camera error:", err);
   });
-
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") {
-      startCamera();
-    }
-  });
+  
 }
