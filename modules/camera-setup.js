@@ -21,25 +21,23 @@ function startCamera() {
   });
 
   navigator.mediaDevices.getUserMedia({ video: true })
-    .then(stream => {
-      videoElement.srcObject = stream;
-      videoElement.onloadeddata = () => {
-        const camera = new Camera(videoElement, {
-          onFrame: async () => {
-            try {
-              await hands.send({ image: videoElement });
-            } catch (err) {
-              console.error("Gesture error:", err);
-            }
-          }
-        });
-        camera.start();
-      };
-    })
-    .catch(err => {
-      alert("❌ Tak dapat akses kamera. Sila benarkan permission.");
-      console.error("Camera error:", err);
-    });
+  .then(stream => {
+    videoElement.srcObject = stream;
+
+    videoElement.onloadeddata = () => {
+      // Guna requestAnimationFrame untuk hantar frame ke MediaPipe
+      function sendFrame() {
+        hands.send({ image: videoElement });
+        requestAnimationFrame(sendFrame);
+      }
+      sendFrame();
+    };
+  })
+  .catch(err => {
+    alert("❌ Tak dapat akses kamera.");
+    console.error("Camera error:", err);
+  });
+
 
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") {
